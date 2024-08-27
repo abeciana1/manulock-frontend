@@ -1,17 +1,19 @@
 import React from 'react';
 import { createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-import SignIn from '../components/SignIn'
+import SignIn from '../components/SignIn';
 
-export const Route = createRootRoute({
-  component: () => RootAppSignIn,
-});
-
-const RootAppSignIn = () => {
+const RootAppSignIn: React.FC = () => {
+  console.log('RootAppSignIn rendered');
   return (
     <>
-        <SignIn/>
+      <SignIn />
       <TanStackRouterDevtools />
     </>
   );
 };
+
+// Create the root route
+export const Route = createRootRoute({
+  component: RootAppSignIn,  // Pass the component directly
+});
