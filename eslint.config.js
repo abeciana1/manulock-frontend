@@ -1,12 +1,11 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import prettier from 'eslint-config-prettier';
 import pluginPrettier from 'eslint-plugin-prettier';
 
 export default [
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
+  { files: ['**/*.{js,mjs,cjs,jsx,tsx}'] }, // Removed .ts extension
   {
     languageOptions: {
       globals: {
@@ -15,18 +14,16 @@ export default [
       },
     },
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  prettier,
+  pluginJs.configs.recommended, // JS-specific config
+  pluginReact.configs.flat.recommended, // React-specific config
+  prettier, // Disable rules that conflict with Prettier
   {
     plugins: {
-      prettier: pluginPrettier,
+      prettier: pluginPrettier, // Add Prettier plugin
     },
     rules: {
-      'prettier/prettier': 'error',
-      'react/react-in-jsx-scope': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
+      'prettier/prettier': 'error', // Show Prettier errors as ESLint errors
+      'react/react-in-jsx-scope': 'off', // Not needed in React 17+
     },
   },
 ];
