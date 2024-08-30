@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    @apply bg-primary-light;
-    max-width: 1440px;
+  @apply bg-primary-light;
+  max-width: 1440px;
 }
