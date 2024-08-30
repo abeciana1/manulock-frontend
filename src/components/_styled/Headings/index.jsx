@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 export const Heading1 = ({ text, color = 'primary' }) => {
   return (
@@ -16,4 +17,9 @@ export const Heading1 = ({ text, color = 'primary' }) => {
       {text}
     </h1>
   );
+};
+
+Heading1.propTypes = {
+  text: PropTypes.string,
+  color: PropTypes.string,
 };

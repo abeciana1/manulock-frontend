@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import Signup from '../components/Signup';
 
@@ -12,7 +12,7 @@ const SignupPage = () => {
 };
 
 export const Route = createFileRoute('/signup')({
-    component: SignupPage,
-//     path: '/signup',
-//   getParentRoot: () => rootRoute,
+  component: SignupPage,
+  //     path: '/signup',
+  //   getParentRoot: () => rootRoute,
 });
