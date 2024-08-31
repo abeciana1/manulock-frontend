@@ -11,19 +11,20 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.jest,
       },
     },
   },
-  pluginJs.configs.recommended, // JS-specific config
-  pluginReact.configs.flat.recommended, // React-specific config
-  prettier, // Disable rules that conflict with Prettier
+  pluginJs.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  prettier,
   {
     plugins: {
-      prettier: pluginPrettier, // Add Prettier plugin
+      prettier: pluginPrettier,
     },
     rules: {
-      'prettier/prettier': 'error', // Show Prettier errors as ESLint errors
-      'react/react-in-jsx-scope': 'off', // Not needed in React 17+
+      'prettier/prettier': 'error',
+      'react/react-in-jsx-scope': 'off',
     },
   },
 ];
