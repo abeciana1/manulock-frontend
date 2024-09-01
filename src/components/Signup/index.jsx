@@ -1,4 +1,4 @@
-import { SignedOut, useSession, SignUp } from '@clerk/clerk-react';
+import { SignedOut, SignUp } from '@clerk/clerk-react';
 
 const Signup = () => {
   return (
