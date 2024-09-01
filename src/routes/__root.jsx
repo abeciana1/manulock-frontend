@@ -7,8 +7,8 @@ import { useSession } from '@clerk/clerk-react';
 import { useMutation } from 'react-query';
 
 const findOrCreateUser = async (data) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
-  console.log('backendUrl', backendUrl)
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  console.log('backendUrl', backendUrl);
   console.log('findOrCreateUser data', data);
 };
 
