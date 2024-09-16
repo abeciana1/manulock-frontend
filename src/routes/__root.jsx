@@ -3,19 +3,22 @@ import { createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 import Login from '../components/Login';
 import { useSession } from '@clerk/clerk-react';
-// import axios from 'axios';
 import { useMutation } from 'react-query';
-
-const findOrCreateUser = async (data) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  console.log('backendUrl', backendUrl);
-  console.log('findOrCreateUser data', data);
-};
+import useAxiosInstance from '../hooks/useAxiosInstance';
 
 const RootAppSignIn = () => {
+  const axiosInstance = useAxiosInstance();
   const { session, isSignedIn } = useSession();
   console.log('isSignedIn', isSignedIn);
   console.log('session', session);
+
+  const findOrCreateUser = async (data) => {
+    await axiosInstance.post('/users', {
+      userData: data,
+    });
+    // if (axiosInstance) {
+    // }
+  };
 
   const { mutate } = useMutation(findOrCreateUser, {
     onSuccess: (data) => {
@@ -40,7 +43,7 @@ const RootAppSignIn = () => {
       // post request to backend - find or create user
       // window.Clerk redirect to dashboard page
     }
-  }, [session, isSignedIn]);
+  }, [session, isSignedIn, axiosInstance]);
 
   return (
     <>
