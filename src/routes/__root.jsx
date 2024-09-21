@@ -1,31 +1,30 @@
 import { useEffect } from 'react';
-import { createRootRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
-import Login from '../components/Login';
+import { createRootRoute, useNavigate, Outlet } from '@tanstack/react-router';
 import { useSession } from '@clerk/clerk-react';
 import { useMutation } from 'react-query';
 import useAxiosInstance from '../hooks/useAxiosInstance';
 
 const RootAppSignIn = () => {
+  const navigate = useNavigate();
   const axiosInstance = useAxiosInstance();
   const { session, isSignedIn } = useSession();
-  console.log('isSignedIn', isSignedIn);
-  console.log('session', session);
-
   const findOrCreateUser = async (data) => {
-    await axiosInstance.post('/users', {
-      userData: data,
+    const response = await axiosInstance.post('/users', {
+      user: data,
     });
-    // if (axiosInstance) {
-    // }
+    return response;
   };
 
   const { mutate } = useMutation(findOrCreateUser, {
     onSuccess: (data) => {
       console.log('success case', data);
+      if (data.status === 200) {
+        navigate({ to: '/dashboard' });
+      }
     },
     onError: () => {
       console.log('error finding or creating user');
+      navigate({ to: '/' });
     },
   });
 
@@ -43,12 +42,11 @@ const RootAppSignIn = () => {
       // post request to backend - find or create user
       // window.Clerk redirect to dashboard page
     }
-  }, [session, isSignedIn, axiosInstance]);
+  }, [session?.user?.id]);
 
   return (
     <>
-      <Login />
-      <TanStackRouterDevtools />
+      <Outlet />
     </>
   );
 };
