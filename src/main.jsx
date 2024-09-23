@@ -22,10 +22,15 @@ const router = createRouter({
   defaultPreloadStaleTime: 0,
 });
 
+const clerkTestingToken = process.env.VITE_CLERK_TESTING_TOKEN;
+
 // Render the root of your React application
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <ClerkProvider
+      testing={{ token: clerkTestingToken }}
+      publishableKey={PUBLISHABLE_KEY}
+    >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
           {/* The RouterProvider now handles routing, no need for App if using __root */}
