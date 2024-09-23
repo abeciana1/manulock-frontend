@@ -5,6 +5,10 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 const isTest = process.env.NODE_ENV === 'test';
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+  },
   plugins: [!isTest && TanStackRouterVite(), react()],
   test: {
     globals: true,
