@@ -17,7 +17,6 @@ const RootAppSignIn = () => {
 
   const { mutate } = useMutation(findOrCreateUser, {
     onSuccess: (data) => {
-      console.log('success case', data);
       if (data.status === 200) {
         navigate({ to: '/dashboard' });
       }
