@@ -33,10 +33,10 @@ export default [
     },
   },
   {
-    files: ['cypress/**/*.cy.{js,jsx,ts,tsx}'],  // Target Cypress test files specifically
+    files: ['cypress/**/*.cy.{js,jsx,ts,tsx}'], // Target Cypress test files specifically
     languageOptions: {
       globals: {
-        ...globals.cypress,  // Add Cypress globals like 'cy' and 'Cypress'
+        ...globals.cypress, // Add Cypress globals like 'cy' and 'Cypress'
       },
     },
   },
