@@ -3,6 +3,7 @@ import { createRootRoute, useNavigate, Outlet } from '@tanstack/react-router';
 import { useSession } from '@clerk/clerk-react';
 import { useMutation } from 'react-query';
 import useAxiosInstance from '../hooks/useAxiosInstance';
+import NavBar from '../components/_navigation/NavBar';
 
 const RootAppSignIn = () => {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ const RootAppSignIn = () => {
 
   return (
     <>
+      {isSignedIn && <NavBar />}
       <Outlet />
     </>
   );
