@@ -9,4 +9,9 @@ describe('NavBar', () => {
     const navBar = screen.getByRole('navigation');
     expect(navBar).toBeInTheDocument();
   });
+
+  test('should render with a logo image', () => {
+    const logo = screen.getByAltText('Manulock logo');
+    expect(logo).toBeInTheDocument();
+  });
 });
