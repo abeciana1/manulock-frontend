@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignedOut, useSession, SignIn } from '@clerk/clerk-react';
+import { SignedOut, SignIn } from '@clerk/clerk-react';
 
 const Login = () => {
   return (
