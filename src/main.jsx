@@ -22,7 +22,7 @@ const router = createRouter({
   defaultPreloadStaleTime: 0,
 });
 
-const clerkTestingToken = process.env.VITE_CLERK_TESTING_TOKEN;
+const clerkTestingToken = import.meta.env.VITE_CLERK_TESTING_TOKEN;
 
 // Render the root of your React application
 createRoot(document.getElementById('root')).render(
