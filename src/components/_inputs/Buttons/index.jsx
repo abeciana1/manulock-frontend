@@ -2,7 +2,13 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-export const SolidButton = ({ text, color, onClick, icon }) => {
+export const SolidButton = ({
+  text,
+  color,
+  onClick,
+  icon: Icon,
+  iconFirst = false,
+}) => {
   return (
     <button
       onClick={onClick}
@@ -13,14 +19,17 @@ export const SolidButton = ({ text, color, onClick, icon }) => {
         ['bg-accent-green text-primary']: color === 'green',
       })}
     >
-      {text}
+      {iconFirst && Icon && <Icon />}
+      {text && text}
+      {!iconFirst && Icon && <Icon />}
     </button>
   );
 };
 
 SolidButton.propTypes = {
-  text: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  color: PropTypes.string,
   onClick: PropTypes.func,
   icon: PropTypes.element,
+  iconFirst: PropTypes.bool,
 };
