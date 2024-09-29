@@ -27,7 +27,7 @@ const RootAppSignIn = () => {
     },
     onError: () => {
       console.log('error finding or creating user');
-      navigate({ to: '/signup' });
+      navigate({ to: '/' });
     },
   });
 
