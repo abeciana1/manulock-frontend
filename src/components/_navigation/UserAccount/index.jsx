@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from '../../_styled/Image';
 import { HiMiniChevronDown, HiMiniChevronUp } from 'react-icons/hi2';
 import { SolidButton } from '../../_inputs/Buttons';
+import { PiSignOutBold } from 'react-icons/pi';
 
 const UserAccount = () => {
   const [userData, setUserData] = useState(null);
@@ -18,13 +19,17 @@ const UserAccount = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const signOutToggle = () => {
+    console.log('signout');
+  };
+
   return (
     <div
       data-testId="user-account"
-      className="relative ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white"
+      className="relative ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44"
     >
       {userData && (
-        <div className="flex gap-4 justify-between items-center">
+        <div className="flex gap-3 justify-between items-center">
           {userData?.hasImage && (
             <Image
               src={userData?.imageUrl}
@@ -44,6 +49,18 @@ const UserAccount = () => {
             icon={menuOpen ? HiMiniChevronUp : HiMiniChevronDown}
           />
         </div>
+      )}
+      {menuOpen && (
+        <ul>
+          <li>
+            <SolidButton
+              iconFirst
+              icon={PiSignOutBold}
+              text="Sign out"
+              onClick={signOutToggle}
+            />
+          </li>
+        </ul>
       )}
     </div>
   );
