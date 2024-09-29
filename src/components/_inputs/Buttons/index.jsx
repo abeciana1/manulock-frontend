@@ -19,9 +19,11 @@ export const SolidButton = ({
         ['bg-accent-green text-primary']: color === 'green',
       })}
     >
-      {iconFirst && Icon && <Icon />}
-      {text && text}
-      {!iconFirst && Icon && <Icon />}
+      <span className="flex items-center justify-between gap-2">
+        {iconFirst && Icon && <Icon />}
+        {text && text}
+        {!iconFirst && Icon && <Icon />}
+      </span>
     </button>
   );
 };
