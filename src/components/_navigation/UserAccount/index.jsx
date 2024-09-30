@@ -14,14 +14,13 @@ const UserAccount = () => {
       setUserData(window.Clerk.user);
     }
   }, []);
-  console.log('userData', userData);
 
   const toggleUserMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   const signOutToggle = () => {
-    console.log('signout');
+    window.Clerk.signOut();
   };
 
   return (
@@ -54,11 +53,13 @@ const UserAccount = () => {
         )}
       </div>
       {menuOpen && (
-        <ul className="text-lg relative ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2">
+        <ul className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2">
           <a
+            target="_blank"
             title="User settings"
             href="https://blessed-peacock-72.accounts.dev/user"
             className="flex items-center gap-2 py-1 px-2"
+            rel="noreferrer"
           >
             <FaGear />
             <li>Settings</li>
