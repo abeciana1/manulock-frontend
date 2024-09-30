@@ -1,11 +1,13 @@
-import { SignedOut, SignUp } from '@clerk/clerk-react';
+import { SignUp } from '@clerk/clerk-react';
 
 const Signup = () => {
   return (
     <section className="flex justify-center items-center h-screen">
-      <SignedOut>
-        <SignUp path="/signup" />
-      </SignedOut>
+      <SignUp
+        signInUrl={import.meta.env.CLERK_SIGN_UP_URL}
+        routing="path"
+        path="/signup"
+      />
     </section>
   );
 };
