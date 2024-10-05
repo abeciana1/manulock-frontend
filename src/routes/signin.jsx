@@ -11,7 +11,7 @@ const SigninPage = () => {
   const navigate = useNavigate();
   const axiosInstance = useAxiosInstance();
   const [hasMutated, setHasMutated] = useState(false);
-  const { session, isSignedIn } = useSession();
+  const { isLoaded, session, isSignedIn } = useSession();
   const findOrCreateUser = async (data) => {
     const response = await axiosInstance.post('/users', {
       user: data,
@@ -32,25 +32,21 @@ const SigninPage = () => {
   });
 
   useEffect(() => {
-    // Redirect to /signin if not signed in
-    if (!isSignedIn) {
-      navigate({ to: '/signin' });
-      return;
-    }
-
     // Prevent mutation and redirection during sign-out process
-    if (isSignedIn && session?.user && !hasMutated) {
-      const userData = {
-        first_name: session?.user?.firstName,
-        last_name: session?.user?.lastName,
-        email: session?.user?.primaryEmailAddress?.emailAddress,
-        auth_id: session?.user?.id,
-        role: 0,
-      };
-      mutate(userData);
-      setHasMutated(true); // Ensure mutate is only called once
+    if (isLoaded) {
+      if (isSignedIn && session?.user && !hasMutated) {
+        const userData = {
+          first_name: session?.user?.firstName,
+          last_name: session?.user?.lastName,
+          email: session?.user?.primaryEmailAddress?.emailAddress,
+          auth_id: session?.user?.id,
+          role: 0,
+        };
+        mutate(userData);
+        setHasMutated(true); // Ensure mutate is only called once
+      }
     }
-  }, [isSignedIn, session?.user, hasMutated, mutate, navigate]);
+  }, [isLoaded, isSignedIn, session?.user]);
 
   return (
     <>
