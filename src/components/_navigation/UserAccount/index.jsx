@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from '../../_styled/Image';
 import { HiMiniChevronDown, HiMiniChevronUp } from 'react-icons/hi2';
 import { SolidButton } from '../../_inputs/Buttons';
@@ -8,6 +8,7 @@ import { FaGear } from 'react-icons/fa6';
 const UserAccount = () => {
   const [userData, setUserData] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     if (window && window?.Clerk) {
@@ -22,6 +23,26 @@ const UserAccount = () => {
   const signOutToggle = () => {
     window.Clerk.signOut();
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false); // Close the menu
+      }
+    };
+
+    // Add event listener when the menu is open
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    // Cleanup event listener when the component unmounts or menu closes
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -53,7 +74,10 @@ const UserAccount = () => {
         )}
       </div>
       {menuOpen && (
-        <ul className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2">
+        <ul
+          ref={menuRef}
+          className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2"
+        >
           <a
             target="_blank"
             title="User settings"
