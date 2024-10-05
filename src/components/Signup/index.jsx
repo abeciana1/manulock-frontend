@@ -7,6 +7,7 @@ const Signup = () => {
         signInUrl={import.meta.env.CLERK_SIGN_UP_URL}
         routing="path"
         path="/signup"
+        afterSignIn="/dashboard"
       />
     </section>
   );
