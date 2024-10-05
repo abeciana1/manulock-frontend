@@ -30,6 +30,10 @@ createRoot(document.getElementById('root')).render(
     <ClerkProvider
       testing={{ token: clerkTestingToken }}
       publishableKey={PUBLISHABLE_KEY}
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/dashboard"
+      signInUrl="/signin"
+      signUpUrl="/signup"
     >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router}>
