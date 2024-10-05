@@ -12,7 +12,6 @@ const RootAppSignIn = () => {
   const navigate = useNavigate();
   const { isSignedIn, isLoaded } = useSession();
   const location = useLocation();
-  console.log('location', location);
 
   useEffect(() => {
     if (isLoaded) {
@@ -21,11 +20,6 @@ const RootAppSignIn = () => {
       } else if (!isSignedIn && location.pathname !== '/signin') {
         navigate({ to: '/signup' });
       }
-
-      // if (!isSignedIn) {
-      //   navigate({ to: '/signin' });
-      //   return;
-      // }
     }
   }, [isLoaded, isSignedIn]);
 
