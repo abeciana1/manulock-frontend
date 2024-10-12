@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
+import instanceReducer from './slices/instanceSlice';
 
 const middlewareEnhancer = [thunk];
 
 const store = configureStore({
-  redux: {},
+  redux: {
+    instance: instanceReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
