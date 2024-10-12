@@ -1,6 +1,7 @@
 import Image from '../../_styled/Image';
 import UserAccount from '../UserAccount';
 import { Link } from '@tanstack/react-router';
+import Notification from '../Notification';
 
 const NavBar = () => {
   return (
@@ -21,7 +22,8 @@ const NavBar = () => {
             Dashboard
           </Link>
         </div>
-        <div>
+        <div className="flex items-center gap-6">
+          <Notification count={5} />
           <UserAccount />
         </div>
       </nav>
