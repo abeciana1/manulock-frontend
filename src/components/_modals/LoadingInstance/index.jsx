@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import './loading-instance.css';
 
 const LoadingInstance = ({ isLoading }) => {
   Modal.setAppElement('#loading');
