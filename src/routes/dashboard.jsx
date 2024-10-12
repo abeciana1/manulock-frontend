@@ -1,12 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 import DocumentListing from '../components/_documents/DocumentListing';
+import { DashboardLayout } from '../components/_styled/Layout';
 
 const DashboardPage = (props) => {
   console.log('props', props);
   return (
-    <>
+    <DashboardLayout>
       <DocumentListing />
-    </>
+    </DashboardLayout>
   );
 };
 
