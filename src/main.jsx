@@ -5,6 +5,8 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen'; // Ensure this is correct
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ClerkProvider } from '@clerk/clerk-react';
+import store from '../redux/store';
+import { Provider } from 'react-redux';
 
 // Retrieve the Clerk publishable key from the environment variables
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -27,19 +29,21 @@ const clerkTestingToken = import.meta.env.VITE_CLERK_TESTING_TOKEN;
 // Render the root of your React application
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ClerkProvider
-      testing={{ token: clerkTestingToken }}
-      publishableKey={PUBLISHABLE_KEY}
-      signInFallbackRedirectUrl="/dashboard"
-      signUpFallbackRedirectUrl="/dashboard"
-      signInUrl="/signin"
-      signUpUrl="/signup"
-    >
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router}>
-          {/* The RouterProvider now handles routing, no need for App if using __root */}
-        </RouterProvider>
-      </QueryClientProvider>
-    </ClerkProvider>
+    <Provider store={store}>
+      <ClerkProvider
+        testing={{ token: clerkTestingToken }}
+        publishableKey={PUBLISHABLE_KEY}
+        signInFallbackRedirectUrl="/dashboard"
+        signUpFallbackRedirectUrl="/dashboard"
+        signInUrl="/signin"
+        signUpUrl="/signup"
+      >
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router}>
+            {/* The RouterProvider now handles routing, no need for App if using __root */}
+          </RouterProvider>
+        </QueryClientProvider>
+      </ClerkProvider>
+    </Provider>
   </StrictMode>
 );
