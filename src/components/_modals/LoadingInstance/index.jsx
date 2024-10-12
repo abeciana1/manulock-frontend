@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './loading-instance.css';
 
 const LoadingInstance = ({ isLoading }) => {
-  Modal.setAppElement('#loading');
+  Modal.setAppElement('#root');
   const customStyles = {
     overlay: {
       backgroundColor: 'rgba(255, 255, 255, 0.6)',
