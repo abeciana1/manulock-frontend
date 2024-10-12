@@ -3,8 +3,11 @@ import { useQuery } from 'react-query';
 import useAxiosInstance from '../../../hooks/useAxiosInstance';
 import { useSession } from '@clerk/clerk-react';
 import { Heading1 } from '../../_styled/Headings';
+import { useDispatch } from 'react-redux';
+import { loading, success } from '../../../../redux/slices/loadingSlice';
 
 const DocumentListing = () => {
+  const dispatch = useDispatch();
   const { session } = useSession();
   console.log('session data', session);
   const axiosInstance = useAxiosInstance();
@@ -24,6 +27,14 @@ const DocumentListing = () => {
   console.log('data', data);
   console.log('isLoading', isLoading);
   console.log('isSuccess', isSuccess);
+
+  if (isLoading) {
+    dispatch(loading());
+  }
+
+  if (isSuccess) {
+    dispatch(success());
+  }
 
   return (
     <>
