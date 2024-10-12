@@ -6,7 +6,7 @@ import LoadingInstance from '../LoadingInstance';
 // import { AiOutlineClose } from 'react-icons/ai';
 
 const Instances = () => {
-  Modal.setAppElement('#modals');
+  Modal.setAppElement('#root');
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.loading.isLoading);
   const instanceState = useSelector((state) => state.instance);
