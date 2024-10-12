@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
-// import { AiOutlineClose } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearInstance } from '../../../../redux/slices/instanceSlice';
+import LoadingInstance from '../LoadingInstance';
+// import { AiOutlineClose } from 'react-icons/ai';
 
 const Instances = () => {
   Modal.setAppElement('#modals');
@@ -35,6 +36,9 @@ const Instances = () => {
 
   return (
     <>
+      {isLoading && instanceState.display === false && (
+        <LoadingInstance isLoading={isLoading} />
+      )}
       {instanceState.display && isLoading === false && !!instanceState.data && (
         <Modal
           isOpen={instanceState.display}
