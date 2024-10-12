@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ClerkProvider } from '@clerk/clerk-react';
 import store from '../redux/store';
 import { Provider } from 'react-redux';
+import Instances from './components/_modals/Instances';
 
 // Retrieve the Clerk publishable key from the environment variables
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -39,6 +40,9 @@ createRoot(document.getElementById('root')).render(
         signUpUrl="/signup"
       >
         <QueryClientProvider client={queryClient}>
+          {/* <div id="modal"></div>
+          <div id="loading"></div> */}
+          <Instances />
           <RouterProvider router={router}>
             {/* The RouterProvider now handles routing, no need for App if using __root */}
           </RouterProvider>
