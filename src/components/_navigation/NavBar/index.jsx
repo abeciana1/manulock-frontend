@@ -1,12 +1,11 @@
 import Image from '../../_styled/Image';
 import UserAccount from '../UserAccount';
 import { Link } from '@tanstack/react-router';
-import { DashboardLayout } from '../../_styled/Layout';
 
 const NavBar = () => {
   return (
-    <DashboardLayout>
-      <nav className="px-10 py-3 flex justify-between items-center bg-white">
+    <section className="px-10 py-3 bg-white">
+      <nav className="flex justify-between items-center max-w-[1440px] mx-auto">
         <div>
           <Image
             src="https://media.graphassets.com/output=format:jpg/BZcUI4wrSx6BB1zpOyO6"
@@ -26,7 +25,7 @@ const NavBar = () => {
           <UserAccount />
         </div>
       </nav>
-    </DashboardLayout>
+    </section>
   );
 };
 
