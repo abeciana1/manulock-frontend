@@ -3,7 +3,8 @@ import Modal from 'react-modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearInstance } from '../../../../redux/slices/instanceSlice';
 import LoadingInstance from '../LoadingInstance';
-// import { AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
+import { SolidButton } from '../../_inputs/Buttons';
 
 const Instances = () => {
   Modal.setAppElement('#root');
@@ -47,7 +48,13 @@ const Instances = () => {
           shouldCloseOnEsc={false}
           shouldCloseOnOverlayClick={false}
         >
-          <div className="flex justify-end"></div>
+          <div className="flex justify-end">
+            <SolidButton
+              color="red"
+              icon={AiOutlineClose}
+              onClick={closeModal}
+            />
+          </div>
         </Modal>
       )}
     </>
