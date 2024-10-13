@@ -5,6 +5,8 @@ import { useSession } from '@clerk/clerk-react';
 import { Heading1 } from '../../_styled/Headings';
 import { useDispatch } from 'react-redux';
 import { loading, success } from '../../../../redux/slices/loadingSlice';
+import { SolidButton } from '../../_inputs/Buttons';
+import { IoMdAdd } from 'react-icons/io';
 
 const DocumentListing = () => {
   const dispatch = useDispatch();
@@ -39,7 +41,17 @@ const DocumentListing = () => {
   return (
     <>
       <section>
-        <Heading1 text="My documents" color="primary" />
+        <div className="flex items-end gap-2">
+          <Heading1 text="My documents" color="primary" />
+          <SolidButton
+            text="Upload"
+            color="blue"
+            iconFirst
+            icon={IoMdAdd}
+            iconSize={20}
+            buttonSize="sm"
+          />
+        </div>
         {data && isSuccess && (
           <ul>
             {data &&
