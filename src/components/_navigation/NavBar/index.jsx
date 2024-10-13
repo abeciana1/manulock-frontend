@@ -5,6 +5,7 @@ import Notification from '../Notification';
 
 const NavBar = () => {
   // todo Add api fetch for user notifications
+  // todo Add rendering of either dropdown or modal
   return (
     <section className="px-10 py-3 bg-white">
       <nav className="flex justify-between items-center max-w-[1440px] mx-auto">
