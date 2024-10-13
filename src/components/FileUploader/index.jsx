@@ -27,7 +27,9 @@ const FileUploader = () => {
   };
 
   const emptyTemplate = () => (
-    <div className="text-center p-4 bg-white text-lg">Drag and drop file here</div>
+    <div className="text-center p-4 bg-white text-lg">
+      Drag and drop file here
+    </div>
   );
 
   return (
