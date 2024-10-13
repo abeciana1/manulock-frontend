@@ -35,3 +35,35 @@ SolidButton.propTypes = {
   icon: PropTypes.element,
   iconFirst: PropTypes.bool,
 };
+
+export const OutlineButton = ({
+  text,
+  color,
+  onClick,
+  icon: Icon,
+  iconFirst = false,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      className={cx('text-lg rounded-lg py-1 px-2', {
+        ['border-2 border-accent-blue text-primary-light']: color === 'blue',
+        ['border-2 border-accent-red text-primary-light']: color === 'red',
+      })}
+    >
+      <span className="flex items-center gap-2">
+        {iconFirst && Icon && <Icon />}
+        {text && text}
+        {!iconFirst && Icon && <Icon />}
+      </span>
+    </button>
+  );
+};
+
+OutlineButton.propTypes = {
+  text: PropTypes.string,
+  color: PropTypes.string,
+  onClick: PropTypes.func,
+  icon: PropTypes.element,
+  iconFirst: PropTypes.bool,
+};
