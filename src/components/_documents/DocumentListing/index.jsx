@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { loading, success } from '../../../../redux/slices/loadingSlice';
 import { SolidButton } from '../../_inputs/Buttons';
 import { IoMdAdd } from 'react-icons/io';
+import FileUploader from '../../FileUploader';
 
 const DocumentListing = () => {
   const dispatch = useDispatch();
@@ -15,14 +16,13 @@ const DocumentListing = () => {
   const axiosInstance = useAxiosInstance();
 
   const fetchDocuments = async () => {
-    const response = await axiosInstance.get('/my-documents', {
+    const { data } = await axiosInstance.get('/my-documents', {
       headers: {
         'Content-Type': 'application/json',
         'Clerk-User-Id': session?.user?.id,
       },
     });
-    console.log('response', response);
-    return response;
+    return data;
   };
 
   const { data, isLoading, isSuccess } = useQuery('documents', fetchDocuments);
@@ -38,10 +38,12 @@ const DocumentListing = () => {
     dispatch(success());
   }
 
+  console.log('data', data?.documents);
+
   return (
     <>
       <section>
-        <div className="flex items-end gap-2">
+        <div className="flex items-end gap-2 flex-wrap">
           <Heading1 text="My documents" color="primary" />
           <SolidButton
             text="Upload"
@@ -52,13 +54,16 @@ const DocumentListing = () => {
             buttonSize="sm"
           />
         </div>
-        {data && isSuccess && (
-          <ul>
-            {data &&
-              data?.documents?.map((doc, index) => {
-                return <li key={index}>doc</li>;
-              })}
-          </ul>
+        {data && data?.documents && isSuccess && (
+          <>
+            {data?.documents?.length < 1 && <FileUploader />}
+            <ul>
+              {data?.documents?.length > 0 &&
+                data?.documents?.map((doc, index) => {
+                  return <li key={index}>doc</li>;
+                })}
+            </ul>
+          </>
         )}
       </section>
     </>
