@@ -69,35 +69,39 @@ const UserAccount = () => {
               onClick={toggleUserMenu}
               iconFirst
               icon={menuOpen ? HiMiniChevronUp : HiMiniChevronDown}
+              iconSize={20}
             />
           </div>
         )}
       </div>
-      {menuOpen && (
-        <ul
-          ref={menuRef}
-          className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2"
-        >
-          <a
-            target="_blank"
-            title="User settings"
-            href="https://blessed-peacock-72.accounts.dev/user"
-            className="flex items-center gap-2 py-1 px-2"
-            rel="noreferrer"
+      <div className="relative">
+        {menuOpen && (
+          <ul
+            ref={menuRef}
+            className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2 top-7 right-6"
           >
-            <FaGear />
-            <li>Settings</li>
-          </a>
-          <li>
-            <SolidButton
-              iconFirst
-              icon={PiSignOutBold}
-              text="Sign out"
-              onClick={signOutToggle}
-            />
-          </li>
-        </ul>
-      )}
+            <a
+              target="_blank"
+              title="User settings"
+              href="https://blessed-peacock-72.accounts.dev/user"
+              className="flex items-center gap-2 py-1 px-2"
+              rel="noreferrer"
+            >
+              <FaGear />
+              <li>Settings</li>
+            </a>
+            <li>
+              <SolidButton
+                iconFirst
+                icon={PiSignOutBold}
+                text="Sign out"
+                onClick={signOutToggle}
+                iconSize={20}
+              />
+            </li>
+          </ul>
+        )}
+      </div>
     </>
   );
 };
