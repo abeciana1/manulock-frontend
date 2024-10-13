@@ -45,28 +45,32 @@ const DocumentListing = () => {
       <section>
         <div className="flex items-end gap-2 flex-wrap">
           <Heading1 text="My documents" color="primary" />
-          <div className="mb-1">
-            <SolidButton
-              text="Upload"
-              color="blue"
-              iconFirst
-              icon={IoMdAdd}
-              iconSize={20}
-              buttonSize="sm"
-            />
-          </div>
+          {data?.documents && data?.documents?.length > 0 && (
+            <div className="mb-1">
+              <SolidButton
+                text="Upload"
+                color="blue"
+                iconFirst
+                icon={IoMdAdd}
+                iconSize={20}
+                buttonSize="sm"
+              />
+            </div>
+          )}
         </div>
-        {data && data?.documents && isSuccess && (
-          <>
-            {data?.documents?.length < 1 && <FileUploader />}
-            <ul>
-              {data?.documents?.length > 0 &&
-                data?.documents?.map((doc, index) => {
-                  return <li key={index}>doc</li>;
-                })}
-            </ul>
-          </>
-        )}
+        <div className="mt-5">
+          {data && data?.documents && isSuccess && (
+            <>
+              {data?.documents?.length < 1 && <FileUploader />}
+              <ul>
+                {data?.documents?.length > 0 &&
+                  data?.documents?.map((doc, index) => {
+                    return <li key={index}>doc</li>;
+                  })}
+              </ul>
+            </>
+          )}
+        </div>
       </section>
     </>
   );
