@@ -8,21 +8,25 @@ export const SolidButton = ({
   onClick,
   icon: Icon,
   iconFirst = false,
+  iconSize = 10,
+  buttonSize = 'lg',
 }) => {
   return (
     <button
       onClick={onClick}
-      className={cx('text-lg rounded-lg py-1 px-2', {
+      className={cx('text-lg rounded-lg', {
         ['bg-accent-blue text-primary-light']: color === 'blue',
         ['bg-accent-yellow text-primary']: color === 'yellow',
         ['bg-accent-red text-primary-light']: color === 'red',
         ['bg-accent-green text-primary']: color === 'green',
+        ['py-1 px-2']: buttonSize === 'lg',
+        ['py-0.5 px-2 h-8']: buttonSize === 'sm',
       })}
     >
-      <span className="flex items-center gap-2">
-        {iconFirst && Icon && <Icon />}
+      <span className="flex items-center gap-1">
+        {iconFirst && Icon && <Icon size={iconSize} />}
         {text && text}
-        {!iconFirst && Icon && <Icon />}
+        {!iconFirst && Icon && <Icon size={iconSize} />}
       </span>
     </button>
   );
@@ -34,6 +38,8 @@ SolidButton.propTypes = {
   onClick: PropTypes.func,
   icon: PropTypes.element,
   iconFirst: PropTypes.bool,
+  iconSize: PropTypes.number,
+  buttonSize: PropTypes.string,
 };
 
 export const OutlineButton = ({
