@@ -10,53 +10,53 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SignupImport } from './routes/signup'
-import { Route as SigninImport } from './routes/signin'
-import { Route as DashboardImport } from './routes/dashboard'
+import { Route as rootRoute } from './routes/__root';
+import { Route as SignupImport } from './routes/signup';
+import { Route as SigninImport } from './routes/signin';
+import { Route as DashboardImport } from './routes/dashboard';
 
 // Create/Update Routes
 
 const SignupRoute = SignupImport.update({
   path: '/signup',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const SigninRoute = SigninImport.update({
   path: '/signin',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const DashboardRoute = DashboardImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/dashboard';
+      path: '/dashboard';
+      fullPath: '/dashboard';
+      preLoaderRoute: typeof DashboardImport;
+      parentRoute: typeof rootRoute;
+    };
     '/signin': {
-      id: '/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof SigninImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/signin';
+      path: '/signin';
+      fullPath: '/signin';
+      preLoaderRoute: typeof SigninImport;
+      parentRoute: typeof rootRoute;
+    };
     '/signup': {
-      id: '/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof SignupImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/signup';
+      path: '/signup';
+      fullPath: '/signup';
+      preLoaderRoute: typeof SignupImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
@@ -66,7 +66,7 @@ export const routeTree = rootRoute.addChildren({
   DashboardRoute,
   SigninRoute,
   SignupRoute,
-})
+});
 
 /* prettier-ignore-end */
 
