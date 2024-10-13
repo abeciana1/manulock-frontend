@@ -4,17 +4,26 @@ import { HiMiniChevronDown, HiMiniChevronUp } from 'react-icons/hi2';
 import { SolidButton } from '../../_inputs/Buttons';
 import { PiSignOutBold } from 'react-icons/pi';
 import { FaGear } from 'react-icons/fa6';
+import useResponsiveness from '../../../hooks/useResponsiveness';
+import cx from 'classnames';
 
 const UserAccount = () => {
   const [userData, setUserData] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [count, setCount] = useState(0);
   const menuRef = useRef(null);
+  const { isMobile } = useResponsiveness() || {};
 
   useEffect(() => {
     if (window && window?.Clerk) {
       setUserData(window.Clerk.user);
     }
   }, []);
+
+  useEffect(() => {
+    // todo add fetch for notifications count
+    setCount(0);
+  }, [isMobile]);
 
   const toggleUserMenu = () => {
     setMenuOpen(!menuOpen);
@@ -48,10 +57,14 @@ const UserAccount = () => {
     <>
       <div
         data-testId="user-account"
-        className="relative ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44"
+        className="relative ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-auto max-w-fit"
       >
         {userData && (
-          <div className="flex gap-3 justify-between items-center">
+          <div
+            className={cx('flex items-center', {
+              ['justify-between']: isMobile,
+            })}
+          >
             {userData?.hasImage && (
               <Image
                 src={userData?.imageUrl}
@@ -62,9 +75,11 @@ const UserAccount = () => {
                 className="rounded-md"
               />
             )}
-            <div className="text-lg font-medium">
-              {'Hi, ' + userData?.firstName}
-            </div>
+            {!isMobile && (
+              <div className="text-lg font-medium">
+                {'Hi, ' + userData?.firstName}
+              </div>
+            )}
             <SolidButton
               onClick={toggleUserMenu}
               iconFirst
@@ -76,30 +91,50 @@ const UserAccount = () => {
       </div>
       <div className="relative">
         {menuOpen && (
-          <ul
-            ref={menuRef}
-            className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2 top-7 right-6"
-          >
-            <a
-              target="_blank"
-              title="User settings"
-              href="https://blessed-peacock-72.accounts.dev/user"
-              className="flex items-center gap-2 py-1 px-2"
-              rel="noreferrer"
+          <>
+            <ul
+              ref={menuRef}
+              className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2 top-7 right-6"
             >
-              <FaGear />
-              <li>Settings</li>
-            </a>
-            <li>
-              <SolidButton
-                iconFirst
-                icon={PiSignOutBold}
-                text="Sign out"
-                onClick={signOutToggle}
-                iconSize={20}
-              />
-            </li>
-          </ul>
+              {isMobile && (
+                <div className="text-lg font-medium ml-2">
+                  {'Hi, ' + userData?.firstName}
+                </div>
+              )}
+              {isMobile && (
+                <li className="flex items-center gap-2 py-1 px-2">
+                  {count > 0 && (
+                    <div className="absolute bg-accent-red text-primary-light rounded-full px-1 text-sm -top-2 -right-3">
+                      {count > 9 ? '9+' : count}
+                    </div>
+                  )}
+                  <span>Notifications</span>
+                </li>
+              )}
+              <li>
+                <a
+                  target="_blank"
+                  title="User settings"
+                  href="https://blessed-peacock-72.accounts.dev/user"
+                  className="flex items-center gap-2 py-1 px-2"
+                  rel="noreferrer"
+                >
+                  <FaGear />
+                  <span>Settings</span>
+                </a>
+              </li>
+              <li>
+                <SolidButton
+                  iconFirst
+                  icon={PiSignOutBold}
+                  text="Sign out"
+                  onClick={signOutToggle}
+                  iconSize={20}
+                  buttonSize="sm"
+                />
+              </li>
+            </ul>
+          </>
         )}
       </div>
     </>
