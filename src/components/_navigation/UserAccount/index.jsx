@@ -80,12 +80,16 @@ const UserAccount = () => {
                 {'Hi, ' + userData?.firstName}
               </div>
             )}
-            <SolidButton
+            <button
+              className="text-lg rounded-lg ml-1.5"
               onClick={toggleUserMenu}
-              iconFirst
-              icon={menuOpen ? HiMiniChevronUp : HiMiniChevronDown}
-              iconSize={20}
-            />
+            >
+              {menuOpen ? (
+                <HiMiniChevronUp size={20} />
+              ) : (
+                <HiMiniChevronDown size={20} />
+              )}
+            </button>
           </div>
         )}
       </div>
@@ -94,7 +98,7 @@ const UserAccount = () => {
           <>
             <ul
               ref={menuRef}
-              className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2 top-7 right-6"
+              className="absolute text-lg ring-neutral-light ring-1 rounded-md py-2 px-2 bg-white w-44 max-w-44 mt-2 top-7 right-1 sm:right-6"
             >
               {isMobile && (
                 <div className="text-lg font-medium ml-2">
