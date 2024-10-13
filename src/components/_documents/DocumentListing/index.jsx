@@ -45,14 +45,16 @@ const DocumentListing = () => {
       <section>
         <div className="flex items-end gap-2 flex-wrap">
           <Heading1 text="My documents" color="primary" />
-          <SolidButton
-            text="Upload"
-            color="blue"
-            iconFirst
-            icon={IoMdAdd}
-            iconSize={20}
-            buttonSize="sm"
-          />
+          <div className="mb-1">
+            <SolidButton
+              text="Upload"
+              color="blue"
+              iconFirst
+              icon={IoMdAdd}
+              iconSize={20}
+              buttonSize="sm"
+            />
+          </div>
         </div>
         {data && data?.documents && isSuccess && (
           <>
