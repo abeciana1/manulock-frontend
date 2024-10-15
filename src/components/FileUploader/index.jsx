@@ -15,7 +15,8 @@ const FileUploader = () => {
 
   const chooseOptions = {
     label: 'Choose',
-    className: 'bg-accent-blue text-primary-light px-2 py-1 rounded-md flex gap-1',
+    className:
+      'bg-accent-blue text-primary-light px-2 py-1 rounded-md flex gap-1',
   };
   const uploadOptions = {
     label: 'Upload',
@@ -23,7 +24,8 @@ const FileUploader = () => {
   };
   const cancelOptions = {
     label: 'Cancel',
-    className: 'bg-accent-red text-primary-light px-2 py-1 rounded-md flex gap-1',
+    className:
+      'bg-accent-red text-primary-light px-2 py-1 rounded-md flex gap-1',
   };
 
   const emptyTemplate = () => (
