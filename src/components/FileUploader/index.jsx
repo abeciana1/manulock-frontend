@@ -15,15 +15,15 @@ const FileUploader = () => {
 
   const chooseOptions = {
     label: 'Choose',
-    className: 'bg-accent-blue text-primary-light px-2 py-1 rounded-md',
+    className: 'bg-accent-blue text-primary-light px-2 py-1 rounded-md flex gap-1',
   };
   const uploadOptions = {
     label: 'Upload',
-    className: 'bg-accent-green text-primary px-2 py-1 rounded-md',
+    className: 'bg-accent-green text-primary px-2 py-1 rounded-md flex gap-1',
   };
   const cancelOptions = {
     label: 'Cancel',
-    className: 'bg-accent-red text-primary-light px-2 py-1 rounded-md',
+    className: 'bg-accent-red text-primary-light px-2 py-1 rounded-md flex gap-1',
   };
 
   const emptyTemplate = () => (
